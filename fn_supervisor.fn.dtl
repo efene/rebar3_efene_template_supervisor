@@ -1,0 +1,21 @@
+@behaviour(supervisor)
+
+fn start_link @public
+  case:
+    supervisor.start_link({{name}}, [])
+end
+
+fn init @public
+  case _Args:
+    #_ "http://www.erlang.org/doc/design_principles/sup_princ.html#id71970"
+    #_ (Id, StartFunc, Restart, Shutdown, Type, Modules)
+
+    ChildSpec = [({{child}},
+                 ({{child}}, start_link, []),
+                 permanent,
+                 brutal_kill,
+                 worker,
+                 [{{child}}])]
+
+    (ok, ((one_for_one, 1, 60), ChildSpec))
+end

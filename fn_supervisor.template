@@ -1,0 +1,6 @@
+{description, "Efene supervisor module"}.
+{variables, [
+    {name, "mysupervisor", "Name of the supervisor module"},
+    {child, "mychild", "Name of the supervised module"}
+]}.
+{template, "fn_supervisor.fn.dtl", "src/{{name}}.fn"}.
